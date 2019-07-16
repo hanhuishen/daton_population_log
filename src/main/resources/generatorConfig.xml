@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--导入属性配置 -->
+    <properties resource="generator.properties"/>
+
+    <classPathEntry
+            location="D:\maven\reposidary\mysql\mysql-connector-java\5.1.29\mysql-connector-java-5.1.29.jar" />
+    <context id="context1">
+        <jdbcConnection driverClass="${driver}"
+                        connectionURL="${url}"
+                        userId="${username}"
+                        password="${password}" />
+
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 生成POJO对象-->
+        <javaModelGenerator targetPackage="${modelPackage}"
+                            targetProject="${modelProject}" />
+        <!-- 生成mapper xml文件-->
+        <sqlMapGenerator targetPackage="${sqlPackage}" targetProject="${sqlProject}" />
+        <!-- 生成mapper xml对应dao接口-->
+        <javaClientGenerator targetPackage="${mapperPackage}"
+                             targetProject="${mapperProject}" type="XMLMAPPER" />
+
+        <!-- 如果需要通配所有表 用% -->
+        <table schema="" tableName="${table}" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <!--&lt;!&ndash; table标签可以有多个，至少一个，tableName指定表名，可以使用_和%通配符 &ndash;&gt; -->
+        <!--<table tableName="tbl_user"> -->
+            <!--&lt;!&ndash; 是否只生成POJO对象 &ndash;&gt; -->
+            <!--<property name="modelOnly" value="false"/> -->
+            <!--&lt;!&ndash; 数据库中表名有时我们都会带个前缀，而实体又不想带前缀，这个配置可以把实体的前缀去掉 &ndash;&gt; -->
+            <!--<domainObjectRenamingRule searchString="^Tbl" replaceString=""/> -->
+        <!--</table>-->
+
+    </context>
+</generatorConfiguration>
